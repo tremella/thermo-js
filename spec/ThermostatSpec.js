@@ -69,4 +69,16 @@ describe('Thermostat', () => {
       expect(thermo.isPowerSaveOn).toEqual(true)
     })
   })
+  
+  describe('reset',()=>{
+    it ('should reset a non-20 temp to 20',()=>{
+      expect(thermo.temp).toEqual(20);
+      thermo.lower()
+      expect(thermo.temp).toEqual(19);
+      thermo.reset()
+      expect(thermo.temp).toEqual(20);
+    })
+  })
+
+
 });

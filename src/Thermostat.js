@@ -30,6 +30,10 @@ class Thermostat {
     }
   }
 
+  reset(){
+    this.temp = 20
+  }
+
   togglePowerSave(){
     if (this.isPowerSaveOn == true) {
       this.isPowerSaveOn = false
@@ -41,10 +45,7 @@ class Thermostat {
 
 //
 // ATTRIBUTES:
-// currTemp         >= 10 && <= (25 || 32)
-// minTemp          10
-// maxTemp          25 || 32
-// isPowerSaveOn    bool
+
 // currEnergyUsage  [low || med || hi]
 //
 // FUNCTIONS
