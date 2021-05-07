@@ -1,5 +1,5 @@
 describe('Thermostat', () => {
-  
+
   var thermo;
 
   beforeEach(()=> {
@@ -11,6 +11,9 @@ describe('Thermostat', () => {
   })
   it('should have a min temp of 10', () => {
     expect(thermo.min).toEqual(10);
+  })
+  it('should have power save on', () => {
+    expect(thermo.isPowerSaveOn).toEqual(true)
   })
 
   describe('raise temp function', ()=>{
@@ -24,6 +27,17 @@ describe('Thermostat', () => {
       thermo.raise(5)
       expect(thermo.temp).toEqual(25);
     })
+    it('should not exceed 25 if power save is on',()=>{
+      expect(thermo.isPowerSaveOn).toEqual(true)
+      expect(thermo.temp).toEqual(20)
+      expect(function() { thermo.raise(6) }).toThrow(new Error('cannot exceed 25'));
+    })
+    it('should not exceed 32 if power save is off',()=>{
+      thermo.togglePowerSave()
+      expect(thermo.isPowerSaveOn).toEqual(false)
+      expect(thermo.temp).toEqual(20)
+      expect(function() { thermo.raise(13) }).toThrow(new Error('cannot exceed 32'));
+    })
   })
 
   describe('lower temp function',()=>{
@@ -36,6 +50,16 @@ describe('Thermostat', () => {
       expect(thermo.temp).toEqual(20);
       thermo.lower(5)
       expect(thermo.temp).toEqual(15);
+    })
+  })
+
+  describe('togglePowerSave',()=>{
+    it('should alter isPowerSaveOn to false, then true again', ()=>{
+      expect(thermo.isPowerSaveOn).toEqual(true)
+      thermo.togglePowerSave()
+      expect(thermo.isPowerSaveOn).toEqual(false)
+      thermo.togglePowerSave()
+      expect(thermo.isPowerSaveOn).toEqual(true)
     })
   })
 });
