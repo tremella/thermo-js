@@ -31,12 +31,14 @@ describe('Thermostat', () => {
       expect(thermo.isPowerSaveOn).toEqual(true)
       expect(thermo.temp).toEqual(20)
       expect(function() { thermo.raise(6) }).toThrow(new Error('cannot exceed 25'));
+      expect(thermo.temp).toEqual(20);
     })
     it('should not exceed 32 if power save is off',()=>{
       thermo.togglePowerSave()
       expect(thermo.isPowerSaveOn).toEqual(false)
       expect(thermo.temp).toEqual(20)
       expect(function() { thermo.raise(13) }).toThrow(new Error('cannot exceed 32'));
+      expect(thermo.temp).toEqual(20);
     })
   })
 
@@ -54,6 +56,7 @@ describe('Thermostat', () => {
     it('cannot go below 10', ()=>{
       expect(thermo.temp).toEqual(20);
       expect(function() { thermo.lower(11) }).toThrow(new Error('cannot be below 10'));
+      expect(thermo.temp).toEqual(20);
     })
   })
 
