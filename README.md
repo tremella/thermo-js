@@ -1,5 +1,5 @@
 Thermostat should be a class with these attributes and methods.
-Currently, all of these are operational.
+Currently, all of these are operational and passing tests.
 
 **ATTRIBUTES**:
 - **temp**:            between min and maxTemp
