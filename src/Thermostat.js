@@ -2,17 +2,17 @@ class Thermostat {
   constructor(){
     this.temp = 20
     this.min = 10
-    this.isPowerSaveOn = true
+    this.isPowerSaveOn = 'on'
   }
 
   raise(temp = 1){
-    if (this.isPowerSaveOn) {
+    if (this.isPowerSaveOn == 'on') {
       if (this.temp + temp > 25){
         throw Error('cannot exceed 25');
       } else {
         this.temp += temp
       }
-    } else {
+    } else if (this.isPowerSaveOn == 'off') {
       if (this.temp + temp > 32){
         throw Error('cannot exceed 32');
       } else {
@@ -34,10 +34,10 @@ class Thermostat {
   }
 
   togglePowerSave(){
-    if (this.isPowerSaveOn == true) {
-      this.isPowerSaveOn = false
-    } else {
-      this.isPowerSaveOn = true
+    if (this.isPowerSaveOn == 'on') {
+      this.isPowerSaveOn = 'off'
+    } else if (this.isPowerSaveOn == 'off') {
+      this.isPowerSaveOn = 'on'
     }
   }
 
