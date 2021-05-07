@@ -51,6 +51,10 @@ describe('Thermostat', () => {
       thermo.lower(5)
       expect(thermo.temp).toEqual(15);
     })
+    it('cannot go below 10', ()=>{
+      expect(thermo.temp).toEqual(20);
+      expect(function() { thermo.lower(11) }).toThrow(new Error('cannot be below 10'));
+    })
   })
 
   describe('togglePowerSave',()=>{

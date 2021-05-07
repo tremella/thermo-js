@@ -23,7 +23,11 @@ class Thermostat {
   }
 
   lower(temp = 1){
-    this.temp -= temp
+    if (this.temp - temp < 10){
+      throw Error('cannot be below 10');
+    } else {
+      this.temp -= temp
+    }
   }
 
   togglePowerSave(){
