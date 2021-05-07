@@ -69,7 +69,7 @@ describe('Thermostat', () => {
       expect(thermo.isPowerSaveOn).toEqual(true)
     })
   })
-  
+
   describe('reset',()=>{
     it ('should reset a non-20 temp to 20',()=>{
       expect(thermo.temp).toEqual(20);
@@ -77,6 +77,25 @@ describe('Thermostat', () => {
       expect(thermo.temp).toEqual(19);
       thermo.reset()
       expect(thermo.temp).toEqual(20);
+    })
+  })
+
+  describe('usageCheck',()=>{
+    it('equals medium if temp is between 10 and 18',()=>{
+      expect(thermo.temp).toEqual(20);
+      thermo.lower(9)
+      expect(thermo.temp).toEqual(11);
+      expect(thermo.usageCheck()).toEqual('low')
+    })
+    it('equals medium if temp is between 19 and 25',()=>{
+      expect(thermo.temp).toEqual(20);
+      expect(thermo.usageCheck()).toEqual('medium')
+    })
+    it('equals medium if temp is above 26',()=>{
+      expect(thermo.temp).toEqual(20);
+      thermo.togglePowerSave()
+      thermo.raise(9)
+      expect(thermo.usageCheck()).toEqual('high')
     })
   })
 

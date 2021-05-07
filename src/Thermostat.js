@@ -41,6 +41,17 @@ class Thermostat {
       this.isPowerSaveOn = true
     }
   }
+
+  usageCheck(){
+    if (this.temp >= 10 && this.temp <= 18) {
+      return 'low'
+    } else if (this.temp >= 19 && this.temp <= 25) {
+      return 'medium'
+    } else {
+      return 'high'
+    }
+  }
+
 }
 
 //
