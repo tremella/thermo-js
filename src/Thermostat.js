@@ -3,7 +3,6 @@ class Thermostat {
     this.temp = 20
     this.min = 10
     this.isPowerSaveOn = true
-
   }
 
   raise(temp = 1){
@@ -51,19 +50,4 @@ class Thermostat {
       return 'high'
     }
   }
-
 }
-
-//
-// ATTRIBUTES:
-
-// currEnergyUsage  [low || med || hi]
-//
-// FUNCTIONS
-// raiseTemp        (+1)
-// lowerTemp        (-1)
-// togglePowerSave  (on or off)
-// resetTemp        (to 20)
-// checkEnergyUsage  (attr accessor?)
-
-// WHAT
