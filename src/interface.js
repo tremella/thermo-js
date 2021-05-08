@@ -45,7 +45,17 @@ document.addEventListener("DOMContentLoaded", ()=> {
   displayWeather('London');
 
   document.querySelector('#select-city').addEventListener('submit',(event) => {
-    event.preventDefault();// what this do?
+    // this ensures it works.
+    event.preventDefault();
+    // Why? the default behaviour of the form tag, when submitted by the user,
+    // is to load the next page to which the form data is sent - or to reload the
+    // same page, if no action attribute is present. But that's not what we want!
+    // So we have to intercept the event passed to the event listener callback,
+    //  and to call preventDefault() on it, to ask the browser not to perform its
+    //  default action when submitting the form. Doing this, the page won't reload,
+    //  and we can handle the form "submission" in our own way (in this case, by
+    //  calling displayWeather).
+
     const city = document.querySelector('#current-city').value;
     displayWeather(city)
   })
