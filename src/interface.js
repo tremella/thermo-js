@@ -6,6 +6,18 @@ document.addEventListener("DOMContentLoaded", ()=> {
     document.querySelector('#temperature').className = thermo.usageCheck();
   }
 
+  const displayWeather = (city) => {
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a3d9eb01d4de82b9b8d0849ef604dbed&units=metric`
+    fetch(url)
+    .then((response) => {
+      return response.json()
+      // returns resolved promise object, parsed as JSON, which is a JS datatype object.
+    })// this gets passed into the next .then statement.
+    .then((data)=>{
+      document.querySelector('#current-temperature').innerText = Math.round(data.main.temp);
+      })
+    }
+
   updateTemp();
 
   document.querySelector('#temperature-up').addEventListener('click', () => {
@@ -30,15 +42,15 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
   })
 
-  fetch('http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=a3d9eb01d4de82b9b8d0849ef604dbed')
-  .then((response) => {
-    return response.json()
-    // returns resolved promise object, parsed as JSON, which is a JS datatype object.
-  })// this gets passed into the next .then statement.
-  .then((data)=>{
-    toC = Math.round(data.main.temp - 273.15)
-    document.querySelector('#current-temperature').innerText = toC;
+  displayWeather('London');
+
+  document.querySelector('#select-city').addEventListener('submit',(event) => {
+    event.preventDefault();// what this do?
+    const city = document.querySelector('#current-city').value;
+    displayWeather(city)
   })
+
+
 
 
 // *****
